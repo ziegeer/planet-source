@@ -183,8 +183,8 @@ def load(config_files):
                 parser.set('Planet', 'template_files',
                    ' '.join(template_files + config.template_files()))
                 break
-        else:
-            log.error('Unable to find theme %s', theme)
+    else:
+        log.error('Unable to find theme %s', theme)
 
     # Filter support
     dirs = config.filter_directories()
