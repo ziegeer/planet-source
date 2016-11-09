@@ -287,7 +287,10 @@ def writeCache(feed_uri, feed_info, data):
     xdoc=minidom.parseString('''<feed xmlns:planet="%s"
       xmlns="http://www.w3.org/2005/Atom"/>\n''' % planet.xmlns)
     reconstitute.source(xdoc.documentElement,data.feed,data.bozo,data.version)
-    write(xdoc.toxml().encode('utf-8'), filename(sources, feed_uri))
+    try:
+        write(xdoc.toxml().encode('utf-8'), filename(sources, feed_uri))
+    except:
+        log.error("Could not encode %s and write it to a file", feed_uri)
     xdoc.unlink()
 
 def httpThread(thread_index, input_queue, output_queue, log):
